@@ -12,7 +12,7 @@ Este projeto implementa um sistema de controle de acesso utilizando Django e Dja
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <url-do-seu-repositorio>
+    git clone https://github.com/BrunoPinheirofe/iot_controleDeAcesso
     cd iot_projeto
     ```
 
