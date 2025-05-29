@@ -1,0 +1,43 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+staticfiles/
+.env
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# pipenv
+Pipfile.lock
+
+# mypy
+.mypy_cache/
+
+# coverage
+htmlcov/
+.coverage
+.tox/
+
+# pytest
+.pytest_cache/
+
+# celery
+celerybeat-schedule
+celerybeat.pid
+
+# local settings
+local_settings.py
+
+# node modules (if using frontend tools)
+node_modules/
