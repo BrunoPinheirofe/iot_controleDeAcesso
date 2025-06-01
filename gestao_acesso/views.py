@@ -24,6 +24,9 @@ class VerificarAcessoView(APIView):
             acesso_permitido = False
             usuario_info = None
         
+        
+        log.status = status_acesso
+        log.save()
 
         if acesso_permitido:
         
@@ -44,3 +47,20 @@ class LogAcessListView(generics.ListAPIView):
     queryset = LogAcess.objects.all()
     serializer_class = LogAcessSerializer
     # Adicionar permissões se necessário (ex: IsAdminUser)
+    
+class CadastrarCartaoView(APIView):
+    def post(self, request, usuario_id,*args, **kwargs):
+        try:
+            usuario = Usuario.objects.get(pk=usuario_id)
+        except:
+            return Response({'erro':'usuario nao encotrado!!'})
+        
+        card_id_novo = request.data.get('cardId')
+        
+        if not card_id_novo:
+            return Response({'error': 'cardId é obrigatório'})
+        
+        if hasattr(usuario, 'cardId'):
+            usuario.cardId = card_id_novo
+            usuario.save()
+            return Response({'message': f"Cardao {card_id_novo} salvo para o usuario com email: {usuario.email}"})

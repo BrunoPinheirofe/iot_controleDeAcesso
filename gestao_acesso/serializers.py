@@ -82,3 +82,17 @@ class UsuarioDetailSerializer(serializers.ModelSerializer):
         fields = ['id', 'email', 'cardId', 'is_active', 'is_staff', 'is_superuser', 'last_login', 'date_joined'] # date_joined e last_login são da AbstractBaseUser
         read_only_fields = ['last_login', 'date_joined', 'is_superuser'] # is_superuser geralmente é gerenciado pelo create_superuser
         
+class CardRegisterSerializer(serializers.Serializer):
+    """
+    Serializer para cadastrar um novo card (cardId).
+    Útil para endpoints onde apenas o cardId será registrado.
+    """
+    cardId = serializers.CharField(max_length=100, required=True)
+
+    def validate_cardId(self, value):
+        if not value.isalnum():
+            raise serializers.ValidationError("Card ID deve ser alfanumérico.")
+        # Opcional: verificar se já existe um usuário com esse cardId
+        if Usuario.objects.filter(cardId=value).exists():
+            raise serializers.ValidationError("Já existe um usuário com este Card ID.")
+        return value
