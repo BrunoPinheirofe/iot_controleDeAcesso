@@ -41,3 +41,6 @@ local_settings.py
 
 # node modules (if using frontend tools)
 node_modules/
+
+statics/
+public/

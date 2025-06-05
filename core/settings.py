@@ -117,8 +117,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'public/static/'  # Altere de 'public/static/' para 'static/'
 
+
+# Adicione esta linha para definir onde os arquivos estáticos serão coletados quando você usar collectstatic
+STATIC_ROOT = BASE_DIR / STATIC_URL
+
+# Adicione esta configuração para permitir que o Django encontre arquivos estáticos em apps e outros diretórios
+STATICFILES_DIRS = [
+    # BASE_DIR / 'static',  # Descomente se você tiver arquivos estáticos personalizados em uma pasta 'static' na raiz do projeto
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
