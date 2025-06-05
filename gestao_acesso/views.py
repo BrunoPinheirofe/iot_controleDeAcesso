@@ -15,6 +15,7 @@ class VerificarAcessoView(APIView):
         log.card_id = card_id_recebido
 
         try:
+            
             usuario = Usuario.objects.get(cardId=card_id_recebido, is_active=True)
             status_acesso = "Permitido"
             acesso_permitido = True
@@ -25,6 +26,7 @@ class VerificarAcessoView(APIView):
             usuario_info = None
         
         
+        print(log.status)
         log.status = status_acesso
         log.save()
 
