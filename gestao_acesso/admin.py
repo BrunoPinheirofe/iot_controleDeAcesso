@@ -72,7 +72,17 @@ admin.site.register(Usuario, UsuarioAdmin)
 
 @admin.register(LogAcess) # Outra forma de registrar
 class LogAcessAdmin(admin.ModelAdmin):
-    list_display = ('card_id', 'timestamp', 'status')
+    list_display = ('card_id', 'timestamp', 'status', 'usuario_email') # Adicione um método para mostrar o email
+    readonly_fields = ('timestamp',) # Timestamp não deve ser editável
+
+    def usuario_email(self, obj):
+        """Retorna o email do usuário associado ao card_id, se existir."""
+        try:
+            usuario = Usuario.objects.get(cardId=obj.card_id)
+            return usuario.email
+        except Usuario.DoesNotExist:
+            return None
+
     list_filter = ('status', 'timestamp')
     search_fields = ('card_id',)
 
